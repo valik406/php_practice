@@ -21,11 +21,22 @@ class Router {
     public function run() {
         // Получить строку запроса
         $uri = $this->getURI();
-        echo $uri;
-        // Проверить наличие такого запроса в routes.php
         
-        // Если есть совпадение, опредилить какой контроллер
-        // и action обрабатывают запрос
+        // Проверить наличие такого запроса в routes.php
+        foreach ($this->routes as $uriPattern => $path) {
+            
+            if(preg_match("~$uriPattern~", $uri)){
+                // Если есть совпадение, опредилить какой контроллер
+                // и action обрабатывают запрос
+                $segments = explode('/', $path);
+                
+                $controllerName = array_shift($segments) . 'Controller';
+                $controllerName = ucfirst($controllerName);
+               
+                $actionName = 'action' . ucfirst(array_shift($segments));
+            }    
+        }
+    
         
         //подключить файл класса контроллера
         
