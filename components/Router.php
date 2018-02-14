@@ -43,13 +43,14 @@ class Router {
                     include_once($controllerFile);
                 }
                 
+                //Создать обект вызвать метод(т.е. action)
+                $controllerObject = new $controllerName;
+                $result = $controllerObject->$actionName();
+                
+               if($result != null){
+                   break;
+               }
             }    
         }
-    
-        
-        //подключить файл класса контроллера
-        
-        //Создать обект вызвать метод(т.е. action)
-        
     }
 }
