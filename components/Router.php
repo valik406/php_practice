@@ -1,5 +1,14 @@
 <?php
 
 class Router {
-    //put your code here
+    
+    private $routes;
+    
+    public function __construct() {
+        
+    }
+    
+    public function run() {
+        echo 'Class Router, method run';
+    }
 }
