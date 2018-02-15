@@ -26,15 +26,21 @@ class Router {
         foreach ($this->routes as $uriPattern => $path) {
             
             if(preg_match("~$uriPattern~", $uri)){
+                
+                $internalRoute = preg_replace("~$uriPattern~", $path, $uri);
+                
                 // Если есть совпадение, опредилить какой контроллер
                 // и action обрабатывают запрос
-                $segments = explode('/', $path);
+                $segments = explode('/', $internalRoute);
                 
                 $controllerName = array_shift($segments) . 'Controller';
                 $controllerName = ucfirst($controllerName);
                
                 $actionName = 'action' . ucfirst(array_shift($segments));
-            
+                
+                $parameters = $segments;
+                
+                
                 //подключить файл класса контроллера
                 $controllerFile = ROOT . '/controllers/' 
                         . $controllerName . '.php';
@@ -45,7 +51,7 @@ class Router {
                 
                 //Создать обект вызвать метод(т.е. action)
                 $controllerObject = new $controllerName;
-                $result = $controllerObject->$actionName();
+                $result = call_user_func_array(array($controllerObject, $actionName), $parameters);
                 
                if($result != null){
                    break;
