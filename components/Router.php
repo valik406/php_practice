@@ -28,7 +28,6 @@ class Router {
             if(preg_match("~$uriPattern~", $uri)){
                 
                 $internalRoute = preg_replace("~$uriPattern~", $path, $uri);
-                
                 // Если есть совпадение, опредилить какой контроллер
                 // и action обрабатывают запрос
                 $segments = explode('/', $internalRoute);
@@ -51,7 +50,13 @@ class Router {
                 
                 //Создать обект вызвать метод(т.е. action)
                 $controllerObject = new $controllerName;
-                $result = call_user_func_array(array($controllerObject, $actionName), $parameters);
+                if(empty($parameters)):
+                    $result = $controllerObject->$actionName();
+                else:
+                    $result = call_user_func_array(array($controllerObject, $actionName), $parameters);
+                    
+                endif;
+                
                 
                if($result != null){
                    break;
