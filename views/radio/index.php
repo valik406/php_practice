@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-
+<?php include ROOT . '/views/layouts/header.php'; ?>
 <html>
     <head>
         <title>Radio</title>
@@ -12,3 +11,4 @@
         </div>
     </body>
 </html>
+<?php include ROOT . '/views/layouts/footer.php'; ?>
