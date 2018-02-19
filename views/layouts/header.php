@@ -54,7 +54,7 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="logo pull-left">
-                                <a href="index.html"><img src="/template/images/home/logo.png" alt="" /></a>
+                                <a href="/"><img src="/template/images/home/logo.png" alt="" /></a>
                             </div>
                         </div>
                         <div class="col-sm-8">
@@ -94,6 +94,7 @@
                                     <li><a href="/blog/">Блог</a></li> 
                                     <li><a href="/about/">О магазине</a></li>
                                     <li><a href="/contacts/">Контакты</a></li>
+                                    <li><a href="/radio/">Радио</a></li>
                                 </ul>
                             </div>
                         </div>
