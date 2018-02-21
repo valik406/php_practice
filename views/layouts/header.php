@@ -18,7 +18,7 @@
         <script src="/template/js//respond.min.js"></script>
         <![endif]-->       
         <link rel="shortcut icon" images/ico/favicon.ico">
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/template/images/ico/apple-touch-icon-144-precomposed.png">
+              <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/template/images/ico/apple-touch-icon-144-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/template/images/ico/apple-touch-icon-114-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/template/images/ico/apple-touch-icon-72-precomposed.png">
         <link rel="apple-touch-icon-precomposed" href="/template/images/ico/apple-touch-icon-57-precomposed.png">
@@ -61,8 +61,12 @@
                             <div class="shop-menu pull-right">
                                 <ul class="nav navbar-nav">                                    
                                     <li><a href="#"><i class="fa fa-shopping-cart"></i> Корзина</a></li>
-                                    <li><a href="#"><i class="fa fa-user"></i> Аккаунт</a></li>
-                                    <li><a href="#"><i class="fa fa-lock"></i> Вход</a></li>
+                                    <?php if (User::isGuest()): ?>
+                                        <li><a href="/user/login/"><i class="fa fa-lock"></i> Вход</a></li>
+                                    <?php else: ?>
+                                        <li><a href="/cabinet/"><i class="fa fa-user"></i> Аккаунт</a></li>
+                                        <li><a href="/user/logout/"><i class="fa fa-unlock"></i> Выход</a></li>
+                                    <?php endif; ?>
                                 </ul>
                             </div>
                         </div>
@@ -101,7 +105,7 @@
                     </div>
                 </div>
             </div><!--/header-bottom-->
-            
+
         </header><!--/header-->
 
 
