@@ -38,6 +38,15 @@ class User {
         endif;
         return FALSE;
     }
+    
+    public static function checkPhone($phone) {
+          $pattern = "/^\+380\d{3}\d{2}\d{2}\d{2}$/";
+        if (preg_match($pattern, $phone)){
+            return TRUE;
+        }
+            
+        return FALSE;
+    }
 
     public static function checkEmail($email) {
         if (filter_var($email, FILTER_VALIDATE_EMAIL)):
@@ -96,6 +105,7 @@ class User {
         if(isset($_SESSION['user'])){
             return $_SESSION['user'];
         }
+        
         
         header("Location: /user/login");
     }

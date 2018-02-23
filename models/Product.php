@@ -77,6 +77,8 @@ class Product {
         return $row['count'];
     }
     
+
+    
     public static function getProductByIds($productIds) {
 
         $db = Db::getConnection();
@@ -95,4 +97,23 @@ class Product {
         return $products;
     }    
 
+    
+    public static function getProductsListByRecommended() {
+            $db = Db::getConnection();
+
+            $result = $db->query('SELECT id, name, price, image, is_new '
+                    . 'FROM product '
+                    . "WHERE status = '1' AND is_recommended = '1' "
+                    . 'ORDER BY id DESC '
+                    . 'LIMIT 6');
+
+            $result->setFetchMode(PDO::FETCH_ASSOC);
+
+            $productsList = [];
+            foreach ($result as $key => $value):
+                $productsList[$key] = $value;
+            endforeach;
+
+            return $productsList;
+    }
 }

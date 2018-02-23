@@ -52,18 +52,29 @@ class Cart {
         return false;
     }    
     
-    public static function getTotalPrice($products) {
+    public static function deleteProduct($id) {
+         $id = intval($id);
+         unset($_SESSION['products'][$id]);
+    }    
+    
+        public static function getTotalPrice($products) {
          
         $productsInCart = self::getProducts();
         $total = 0;
         
         if($productsInCart){
             foreach ($products as $item){
-                $total += $item['price'] + $productsInCart[$item['id']]; 
+                $total += $item['price'] * $productsInCart[$item['id']]; 
             }
         }
         
         return $total;
-    }    
+    }  
 
+    
+    public static function clear() {
+        if (isset($_SESSION['products'])):
+            unset($_SESSION['products']);
+        endif;
+    }        
 }
